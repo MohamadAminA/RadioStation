@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import com.radioroam.android.domain.model.RadioStation
 import com.radioroam.android.ui.screens.FavoritesScreen
 import com.radioroam.android.ui.screens.HomeScreen
+import com.radioroam.android.ui.screens.LoginScreen
+import com.radioroam.android.ui.screens.RegisterScreen
 
 @Composable
 fun AppNavHost(
@@ -18,8 +20,16 @@ fun AppNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Home.title
+        startDestination = Screen.Login.title // ← اول باید بره صفحه لاگین
     ) {
+        composable(route = Screen.Login.title) {
+            LoginScreen(navController = navController)
+        }
+
+        composable(route = Screen.Register.title) {
+            RegisterScreen(navController = navController)
+        }
+
         composable(route = Screen.Home.title) {
             HomeScreen(
                 navController = navController,
@@ -28,6 +38,7 @@ fun AppNavHost(
                 isPlayerSetUp = isPlayerSetUp
             )
         }
+
         composable(route = Screen.Favorites.title) {
             FavoritesScreen(
                 navController = navController

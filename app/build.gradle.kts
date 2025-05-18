@@ -117,7 +117,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     implementation("io.insert-koin:koin-ktor:$koinVersion")
-
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
     // Jetpack Media3
     implementation("androidx.media3:media3-exoplayer:$media3Version")
     implementation("androidx.media3:media3-exoplayer-hls:$media3Version")
