@@ -14,13 +14,14 @@ import com.radioroam.android.ui.screens.RegisterScreen
 @Composable
 fun AppNavHost(
     navController: NavHostController,
+    startDestination: String = Screen.Login.title,
     onNextPage: (List<RadioStation>) -> Unit = {},
     onRadioStationClick: (Int) -> Unit = {},
     isPlayerSetUp: Boolean = false
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.title // ← اول باید بره صفحه لاگین
+        startDestination = startDestination // ← اول باید بره صفحه لاگین
     ) {
         composable(route = Screen.Login.title) {
             LoginScreen(navController = navController)

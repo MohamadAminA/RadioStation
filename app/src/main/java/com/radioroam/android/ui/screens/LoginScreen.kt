@@ -12,6 +12,7 @@ import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radioroam.android.data.AppDatabase
+import com.radioroam.android.data.UserPreferences
 import kotlinx.coroutines.launch
 
 @Composable
@@ -23,7 +24,6 @@ fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val coroutineScope = rememberCoroutineScope()
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,7 +31,7 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("ورود به حساب", style = MaterialTheme.typography.headlineMedium)
+        Text("ورود به حساب", style = MaterialTheme.typography.headlineMedium,)
         Spacer(modifier = Modifier.height(24.dp))
 
         OutlinedTextField(
@@ -63,6 +63,8 @@ fun LoginScreen(navController: NavController) {
                         Toast
                             .makeText(context, "ورود موفق", Toast.LENGTH_SHORT)
                             .show()
+                        val prefs = UserPreferences(context)
+                        prefs.saveEmail(email)
                         // اینجا برو به صفحه اصلی
                         navController.navigate("home") {
                             popUpTo("login") { inclusive = true }

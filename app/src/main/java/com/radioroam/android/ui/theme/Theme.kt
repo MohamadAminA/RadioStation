@@ -2,9 +2,16 @@ package com.radioroam.android.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import com.radioroam.android.R
 
 
 private val LightColors = lightColorScheme(
@@ -71,7 +78,30 @@ private val DarkColors = darkColorScheme(
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
 )
-
+val VazirFont = FontFamily(
+    Font(R.font.iransans) // ← اسم فایلی که گذاشتی
+)
+val AppTypography = Typography(
+    bodyLarge = TextStyle(
+        fontFamily = VazirFont,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+    headlineMedium = TextStyle(
+        fontFamily = VazirFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp
+    ),
+    titleLarge = TextStyle(
+        fontFamily = VazirFont,
+        fontWeight = FontWeight.Medium,
+        fontSize = 20.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = VazirFont,
+        fontWeight = FontWeight.Light,
+        fontSize = 12.sp
+    ))
 @Composable
 fun AppTheme(
   useDarkTheme: Boolean = isSystemInDarkTheme(),
@@ -84,7 +114,7 @@ fun AppTheme(
   }
 
   MaterialTheme(
-    colorScheme = colors,
+    colorScheme = colors, typography = AppTypography, // ← اینجا اضافه کن
     content = content
   )
 }

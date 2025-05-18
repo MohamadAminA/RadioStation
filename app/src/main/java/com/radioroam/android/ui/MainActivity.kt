@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -21,6 +22,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,6 +47,9 @@ import com.radioroam.android.ui.utility.updatePlaylist
 import com.radioroam.android.ui.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.KoinContext
+import com.radioroam.android.data.UserPreferences
+import com.radioroam.android.ui.navigation.Screen
+import com.radioroam.android.ui.navigation.AppNavHost
 
 class MainActivity : ComponentActivity() {
 
@@ -53,7 +58,26 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val prefs = UserPreferences(this)
+
         setContent {
+            val navController = rememberNavController()
+            var startDestination by remember { mutableStateOf<String?>(null)}
+            if (startDestination != null) {
+                AppNavHost(
+                    navController = navController,
+                    startDestination = startDestination!!
+                )
+            } else {
+                // می‌تونی اینجا یه Splash یا Loading بذاری
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+
             KoinContext {
                 AppTheme {
                     // A surface container using the 'background' color from the theme
@@ -166,6 +190,7 @@ class MainActivity : ComponentActivity() {
                                 // Create the navigation host
                                 AppNavHost(
                                     navController = navController,
+
                                     onNextPage = {
                                         // Update MediaController with the current list of items
                                         val currentItems = it
@@ -202,4 +227,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }
