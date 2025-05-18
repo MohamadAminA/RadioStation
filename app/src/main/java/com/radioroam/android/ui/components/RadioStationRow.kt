@@ -55,7 +55,7 @@ fun RadioStationRow(
                 model = item.favicon,
                 contentDescription = null,
                 placeholder = painterResource(id = R.drawable.radio),
-                error = painterResource(id = R.drawable.error)
+                error = painterResource(id = R.drawable.nava)
             )
             Column(
                 modifier = Modifier

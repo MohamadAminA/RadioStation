@@ -31,13 +31,13 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("ورود به حساب", style = MaterialTheme.typography.headlineMedium,)
+        Text("با نوا، صدای زندگی رو بشنو", style = MaterialTheme.typography.titleLarge,)
         Spacer(modifier = Modifier.height(24.dp))
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("ایمیل") },
+            label = { Text("نام کاربری",style = MaterialTheme.typography.labelSmall) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
@@ -47,7 +47,7 @@ fun LoginScreen(navController: NavController) {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("رمز عبور") },
+            label = { Text("رمز عبور",style = MaterialTheme.typography.labelSmall) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation()
@@ -61,11 +61,10 @@ fun LoginScreen(navController: NavController) {
                     val user = userDao.login(email, password)
                     if (user != null) {
                         Toast
-                            .makeText(context, "ورود موفق", Toast.LENGTH_SHORT)
+                            .makeText(context, "وقت شنیدنه، پلی رو بزن!", Toast.LENGTH_SHORT)
                             .show()
                         val prefs = UserPreferences(context)
                         prefs.saveEmail(email)
-                        // اینجا برو به صفحه اصلی
                         navController.navigate("home") {
                             popUpTo("login") { inclusive = true }
                         }
@@ -78,7 +77,7 @@ fun LoginScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("ورود",style = MaterialTheme.typography.headlineSmall)
+            Text("برو بریم...",style = MaterialTheme.typography.headlineMedium)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -90,3 +89,4 @@ fun LoginScreen(navController: NavController) {
         }
     }
 }
+

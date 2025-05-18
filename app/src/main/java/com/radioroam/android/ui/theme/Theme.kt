@@ -78,34 +78,45 @@ private val DarkColors = darkColorScheme(
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
 )
-val VazirFont = FontFamily(
-    Font(R.font.iransans) // ← اسم فایلی که گذاشتی
+val iransans = FontFamily(
+    Font(R.font.iransans)
 )
+
+val iransanslight = FontFamily(
+    Font(R.font.light)
+)
+val iransansbold = FontFamily(
+    Font(R.font.black)
+)
+val iransansultralight = FontFamily(
+    Font(R.font.ultralight)
+)
+
 val AppTypography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = VazirFont,
+        fontFamily = iransans,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
     headlineMedium = TextStyle(
-        fontFamily = VazirFont,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
-    ),
-    headlineSmall = TextStyle(
-        fontFamily = VazirFont,
+        fontFamily = iransans,
         fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
+    headlineSmall = TextStyle(
+        fontFamily = iransanslight,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
     titleLarge = TextStyle(
-        fontFamily = VazirFont,
+        fontFamily = iransansbold,
         fontWeight = FontWeight.Medium,
-        fontSize = 20.sp
+        fontSize = 26.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = VazirFont,
+        fontFamily = iransansultralight,
         fontWeight = FontWeight.Light,
-        fontSize = 12.sp
+        fontSize = 14.sp
     ))
 @Composable
 fun AppTheme(
@@ -119,7 +130,7 @@ fun AppTheme(
   }
 
   MaterialTheme(
-    colorScheme = colors, typography = AppTypography, // ← اینجا اضافه کن
+    colorScheme = colors, typography = AppTypography,
     content = content
   )
 }

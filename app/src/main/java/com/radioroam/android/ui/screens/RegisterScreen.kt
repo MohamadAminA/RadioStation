@@ -35,13 +35,13 @@ fun RegisterScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("ثبت‌نام", style = MaterialTheme.typography.headlineMedium)
+        Text("ثبت‌نام در سرزمین نوا", style = MaterialTheme.typography.titleLarge)
         Spacer(modifier = Modifier.height(24.dp))
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("ایمیل") },
+            label = { Text("نام کاربری",style = MaterialTheme.typography.labelSmall) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
@@ -51,7 +51,7 @@ fun RegisterScreen(navController: NavController) {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("رمز عبور") },
+            label = { Text("رمز عبور",style = MaterialTheme.typography.labelSmall) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation()
@@ -62,7 +62,7 @@ fun RegisterScreen(navController: NavController) {
         OutlinedTextField(
             value = confirmPassword,
             onValueChange = { confirmPassword = it },
-            label = { Text("تکرار رمز عبور") },
+            label = { Text("تکرار رمز عبور",style = MaterialTheme.typography.labelSmall) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation()
@@ -74,7 +74,7 @@ fun RegisterScreen(navController: NavController) {
             onClick = {
                 coroutineScope.launch {
                     if (password != confirmPassword) {
-                        Toast.makeText(context, "رمزها مطابقت ندارند", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "رمزها مطابقت ندارن!", Toast.LENGTH_SHORT).show()
                         return@launch
                     }
 
@@ -87,12 +87,12 @@ fun RegisterScreen(navController: NavController) {
                     val newUser = User(email = email, password = password)
                     userDao.insert(newUser)
                     Toast.makeText(context, "ثبت‌نام موفق. لطفاً وارد شوید", Toast.LENGTH_SHORT).show()
-                    navController.popBackStack() // برگشت به صفحه لاگین
+                    navController.popBackStack()
                 }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("ثبت‌نام",style = MaterialTheme.typography.headlineSmall)
+            Text("ثبت ‌نام",style = MaterialTheme.typography.headlineMedium)
         }
     }
 }
