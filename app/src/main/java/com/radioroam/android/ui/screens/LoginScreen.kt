@@ -78,7 +78,7 @@ fun LoginScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("ورود")
+            Text("ورود",style = MaterialTheme.typography.headlineSmall)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -86,7 +86,7 @@ fun LoginScreen(navController: NavController) {
         TextButton(onClick = {
             navController.navigate("register")
         }) {
-            Text("هنوز ثبت‌نام نکردی؟ ثبت‌نام کن")
+            Text("هنوز ثبت‌نام نکردی؟ ثبت‌نام کن",style = MaterialTheme.typography.headlineSmall)
         }
     }
 }

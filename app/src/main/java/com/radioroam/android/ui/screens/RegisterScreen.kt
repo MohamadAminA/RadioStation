@@ -92,7 +92,7 @@ fun RegisterScreen(navController: NavController) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("ثبت‌نام")
+            Text("ثبت‌نام",style = MaterialTheme.typography.headlineSmall)
         }
     }
 }

@@ -92,6 +92,11 @@ val AppTypography = Typography(
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp
     ),
+    headlineSmall = TextStyle(
+        fontFamily = VazirFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp
+    ),
     titleLarge = TextStyle(
         fontFamily = VazirFont,
         fontWeight = FontWeight.Medium,

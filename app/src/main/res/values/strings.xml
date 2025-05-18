@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RadioRoam</string>
+    <string name="app_name">NAVA</string>
 
     <string name="notification_content_title">Playback cannot be resumed</string>
     <string name="notification_content_text">Press on the play button on the media notification if it

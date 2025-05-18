@@ -18,7 +18,7 @@ fun HomeTopAppBar(
 ) {
     TopAppBar(
         title = {
-            Text(text = "Radio Stations")
+            Text(text = "نوا")
         },
         actions = {
             IconButton(onClick = onFavClick) {
@@ -38,7 +38,7 @@ fun FavoriteTopAppBar(
 ) {
     TopAppBar(
         title = {
-            Text(text = "Favorite Stations")
+            Text(text = "علاقه مندی ها")
         },
         navigationIcon = {
             IconButton(onClick = navigateUp) {
