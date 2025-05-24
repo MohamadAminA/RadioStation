@@ -66,25 +66,26 @@ fun RadioStationRow(
             ) {
                 Text(
                     text = item.name,
-                    color = Color.Black,
+                    color = Color.White,
                     maxLines = 1, // prevent text from wrapping
                     overflow = TextOverflow.Ellipsis // add ellipsis when text is too long
                 )
                 val genres = item.genres
                 if (genres.isNotEmpty()) {
                     Text(
-                        text = genres.joinToString("|"),
-                        color = Color.Black,
+                        text = genres.joinToString(" | "),
+                        color = Color.White,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Visible
                     )
                 }
             }
         }
-        IconButton(onClick = { onFavClick(item)}) {
+        IconButton(onClick = { onFavClick(item) }) {
             Icon(
                 imageVector = if (isFavorite) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
-                contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites"
+                contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
+                tint = if (isFavorite) Color(0xFFFF4081) else Color(0xFFFF4081) // صورتی روشن برای هر دو حالت
             )
         }
     }
