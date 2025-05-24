@@ -1,7 +1,9 @@
 package com.radioroam.android.ui.components.player
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -21,6 +23,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,22 +43,42 @@ fun ExpandedPlayerView(
     onPrevClick: () -> Unit,
     onNextClick: () -> Unit
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        TopBar(
-            onCollapseTap = onCollapseTap,
-            onMenuTap = onMenuTap
+        // تصویر پس‌زمینه
+        Image(
+            painter = painterResource(id = R.drawable.headphones),
+            contentDescription = "Background",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
         )
-        PlayerArtwork(playerState = playerState)
-        PlayerTitle(playerState = playerState)
-        PlayerControls(
-            playerState = playerState,
-            onPrevClick = onPrevClick,
-            onNextClick = onNextClick
+
+        // لایه تیره
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.8f))
         )
+
+        // محتوای اصلی پخش کننده
+        Column(
+            modifier = modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TopBar(
+                onCollapseTap = onCollapseTap,
+                onMenuTap = onMenuTap
+            )
+            PlayerArtwork(playerState = playerState)
+            PlayerTitle(playerState = playerState)
+            PlayerControls(
+                playerState = playerState,
+                onPrevClick = onPrevClick,
+                onNextClick = onNextClick
+            )
+        }
     }
 }
 
@@ -71,7 +95,7 @@ private fun TopBar(onCollapseTap: () -> Unit, onMenuTap: () -> Unit) {
                 modifier = Modifier.size(40.dp),
                 painter = painterResource(id = R.drawable.keyboard_arrow_down),
                 contentDescription = "Collapse",
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = Color.White
             )
         }
         IconButton(onClick = onMenuTap) {
@@ -79,7 +103,7 @@ private fun TopBar(onCollapseTap: () -> Unit, onMenuTap: () -> Unit) {
                 modifier = Modifier.size(40.dp),
                 imageVector = Icons.Rounded.MoreVert,
                 contentDescription = "More options",
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = Color.White
             )
         }
     }
@@ -99,6 +123,7 @@ private fun PlayerArtwork(playerState: PlayerState) {
                 .fillMaxSize(),
             model = playerState.currentMediaItem?.mediaMetadata?.artworkUri,
             contentDescription = null,
+            error = painterResource(com.radioroam.android.R.drawable.headphone5),
         )
     }
 }
@@ -109,9 +134,9 @@ private fun PlayerTitle(playerState: PlayerState) {
         modifier = Modifier
             .padding(8.dp),
         text = playerState.currentMediaItem?.mediaMetadata?.displayTitle.toString(),
-        color = MaterialTheme.colorScheme.onSurface,
+        color = Color.White,
         maxLines = 1, // prevent text from wrapping
-        overflow = TextOverflow.Ellipsis // add ellipsis when text is too long
+        overflow = TextOverflow.Visible // add ellipsis when text is too long
     )
 }
 
@@ -132,7 +157,7 @@ private fun PlayerControls(
             modifier = Modifier
                 .size(64.dp)
                 .padding(8.dp),
-            iconTint = MaterialTheme.colorScheme.onSurface
+            iconTint = Color.White
         ) {
             onPrevClick()
         }
@@ -143,7 +168,7 @@ private fun PlayerControls(
                 .padding(8.dp),
             isPlaying = playerState.isPlaying,
             isBuffering = playerState.isBuffering,
-            iconTint = MaterialTheme.colorScheme.surface
+            iconTint =Color.White
         ) {
             with(playerState.player) {
                 playWhenReady = !playWhenReady
@@ -153,7 +178,7 @@ private fun PlayerControls(
             modifier = Modifier
                 .size(64.dp)
                 .padding(8.dp),
-            iconTint = MaterialTheme.colorScheme.onSurface
+            iconTint = Color.White
         ) {
             onNextClick()
         }

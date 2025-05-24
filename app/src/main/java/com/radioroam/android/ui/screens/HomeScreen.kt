@@ -1,5 +1,6 @@
 package com.radioroam.android.ui.screens
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -30,11 +31,17 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            HomeTopAppBar {
-                navController.navigate(Screen.Favorites.title)
+            Box(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp) // پدینگ چپ و راست
+            ) {
+                HomeTopAppBar() {
+                    navController.navigate(Screen.Favorites.title)
+                }
             }
         }
-    ) { paddingValues ->
+    )
+     { paddingValues ->
 
         val state by viewModel.state.collectAsStateWithLifecycle()
 

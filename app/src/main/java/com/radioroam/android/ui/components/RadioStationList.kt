@@ -29,7 +29,7 @@ fun RadioStationList(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(75.dp)
-                    .background(Color.White)
+                    .background(Color.Transparent)
                     .padding(16.dp)
                     .clickable {
                         onItemClick(items.indexOf(item))

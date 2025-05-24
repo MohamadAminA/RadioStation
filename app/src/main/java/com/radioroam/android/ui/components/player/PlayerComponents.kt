@@ -18,6 +18,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
@@ -88,9 +89,11 @@ fun MiniPlayerArtworkView(
         shape = RoundedCornerShape(4.dp)
     ) {
         AsyncImage(
-            modifier = Modifier.fillMaxSize(),
             model = artworkUri,
             contentDescription = null,
+            contentScale = ContentScale.Fit,
+            error = painterResource(com.radioroam.android.R.drawable.headphones4), // تصویر جایگزین برای خطا
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
@@ -134,7 +137,7 @@ fun PreviousButton(
             modifier = Modifier.fillMaxSize(fraction = .8f),
             painter = painterResource(R.drawable.exo_icon_previous),
             contentDescription = "Previous",
-            tint = iconTint
+            tint = Color.White
         )
     }
 }
